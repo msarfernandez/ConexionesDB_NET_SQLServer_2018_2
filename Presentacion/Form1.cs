@@ -25,6 +25,10 @@ namespace Presentacion
             try
             {
                 dgvPropiedades.DataSource = neg.listar();
+                dgvPropiedades.Columns[2].Visible = false;
+                dgvPropiedades.Columns["FechaAlta"].Visible = false;
+                dgvPropiedades.Columns["Direccion"].Visible = false;
+
             }
             catch (Exception ex)
             {

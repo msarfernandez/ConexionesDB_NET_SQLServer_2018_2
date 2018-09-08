@@ -35,9 +35,12 @@
             // dgvPropiedades
             // 
             this.dgvPropiedades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPropiedades.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvPropiedades.Location = new System.Drawing.Point(12, 47);
+            this.dgvPropiedades.MultiSelect = false;
             this.dgvPropiedades.Name = "dgvPropiedades";
-            this.dgvPropiedades.Size = new System.Drawing.Size(541, 203);
+            this.dgvPropiedades.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvPropiedades.Size = new System.Drawing.Size(541, 191);
             this.dgvPropiedades.TabIndex = 0;
             // 
             // Form1
