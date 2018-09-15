@@ -12,8 +12,12 @@ namespace Dominio
         public string DescripcionGeneral { get; set; }
         public int SuperficieCubierta { get; set; }
         public int SuperficieDescubierta { get; set; }
-        public int Ambientes { get; set; }
         public Direccion Direccion { get; set; }
         public DateTime FechaAlta { get; set; }
+        public List<Ambient> Ambientes { get; set; }
+        
+
     }
+
+
 }

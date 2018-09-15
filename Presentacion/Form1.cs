@@ -36,5 +36,13 @@ namespace Presentacion
             }
 
         }
+
+        private void btnVerAmbientes_Click(object sender, EventArgs e)
+        {
+            Propiedad prop;
+            prop = (Propiedad)dgvPropiedades.CurrentRow.DataBoundItem;
+            frmAmbientes ambientes = new frmAmbientes(prop);
+            ambientes.ShowDialog();
+        }
     }
 }

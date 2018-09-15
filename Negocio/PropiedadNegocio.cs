@@ -19,22 +19,29 @@ namespace Negocio
             SqlCommand comando = new SqlCommand();
             //objeto de recepcion
             SqlDataReader lector;
+            //lista
             IList<Propiedad> lista = new List<Propiedad>();
+            Propiedad aux;
+
+            //CLASE 6: agrego un objeto nuevo
+            AmbientNegocio ambientNegocio = new AmbientNegocio();
+
             try
             {
                 conexion.ConnectionString = "initial catalog= INMO_DB; data source=.; integrated security=sspi";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "select * from propiedades";
+                comando.CommandText = "Select IdPropiedad, DescripcionGeneral from PROPIEDADES";
                 comando.Connection = conexion;
                 conexion.Open();
                 lector = comando.ExecuteReader();
 
                 while (lector.Read())
                 {
-                    Propiedad aux = new Propiedad();
-                    aux.Id = lector.GetInt32(0);
+                    aux = new Propiedad();
                     aux.DescripcionGeneral = lector.GetString(1);
-
+                    aux.Id = (int)lector["IdPropiedad"];
+                    //en la property AMBIENTES guardo todos sus ambientes.
+                    aux.Ambientes = ambientNegocio.listar(aux.Id);
                     lista.Add(aux);
                 }
 
@@ -47,6 +54,8 @@ namespace Negocio
             }
             finally
             {
+                //lector.Close();
+                lector = null;
                 conexion.Close();
             }
 
