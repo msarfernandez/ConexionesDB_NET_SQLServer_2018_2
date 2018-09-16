@@ -8,6 +8,6 @@ namespace Dominio
 {
     public class Direccion
     {
-
+        public int Id { get; set; }
     }
 }

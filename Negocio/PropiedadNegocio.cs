@@ -11,7 +11,8 @@ namespace Negocio
     public class PropiedadNegocio
     {
 
-        public IList<Propiedad> listar() {
+        public IList<Propiedad> listar()
+        {
 
             //conexion
             SqlConnection conexion = new SqlConnection();
@@ -30,7 +31,7 @@ namespace Negocio
             {
                 conexion.ConnectionString = "initial catalog= INMO_DB; data source=.; integrated security=sspi";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "Select IdPropiedad, DescripcionGeneral from PROPIEDADES";
+                comando.CommandText = "Select IdPropiedad, DescripcionGeneral, IdDireccion from PROPIEDADES";
                 comando.Connection = conexion;
                 conexion.Open();
                 lector = comando.ExecuteReader();
@@ -40,6 +41,14 @@ namespace Negocio
                     aux = new Propiedad();
                     aux.DescripcionGeneral = lector.GetString(1);
                     aux.Id = (int)lector["IdPropiedad"];
+
+                    //Para las columnas que puedan llegar a traer valores nulos. Se puede armar una función aparte.
+                    if (!lector.IsDBNull(2))
+                    {
+                        aux.Direccion = new Direccion();
+                        aux.Direccion.Id = (int)lector["IdDireccion"];
+                    }
+
                     //en la property AMBIENTES guardo todos sus ambientes.
                     aux.Ambientes = ambientNegocio.listar(aux.Id);
                     lista.Add(aux);
