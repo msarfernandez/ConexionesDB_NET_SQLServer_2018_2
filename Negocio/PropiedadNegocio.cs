@@ -31,7 +31,7 @@ namespace Negocio
             {
                 conexion.ConnectionString = "initial catalog= INMO_DB; data source=.; integrated security=sspi";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "Select IdPropiedad, DescripcionGeneral, IdDireccion from PROPIEDADES";
+                comando.CommandText = "Select P.IdPropiedad, P.DescripcionGeneral, P.IdDireccion, P.SuperficieCubierta, P.SuperFicieDescubierta, D.Calle, D.Numero  from PROPIEDADES P, DIRECCIONES D Where P.IdDireccion = D.id";
                 comando.Connection = conexion;
                 conexion.Open();
                 lector = comando.ExecuteReader();
@@ -47,7 +47,12 @@ namespace Negocio
                     {
                         aux.Direccion = new Direccion();
                         aux.Direccion.Id = (int)lector["IdDireccion"];
+                        aux.Direccion.Calle = (string)lector["Calle"];
+                        aux.Direccion.Altura = (int)lector["Numero"];
+                        
                     }
+                    aux.SuperficieCubierta = (int)lector["SuperficieCubierta"];
+                    aux.SuperficieDescubierta = (int)lector["SuperficieDescubierta"];
 
                     //en la property AMBIENTES guardo todos sus ambientes.
                     aux.Ambientes = ambientNegocio.listar(aux.Id);
@@ -70,5 +75,32 @@ namespace Negocio
 
         }
 
+        public void alta(Propiedad nuevo)
+        {
+            AccesoDatos conexion = null;
+            string consulta = "";
+            try
+            {
+                conexion = new AccesoDatos();
+                consulta = "insert into PROPIEDADES (DescripcionGeneral, SuperficieCubierta, SuperficieDescubierta, IdDireccion)";
+                consulta = consulta + "  values ('" + nuevo.DescripcionGeneral + "'," + nuevo.SuperficieCubierta.ToString() + "," + nuevo.SuperficieDescubierta.ToString() + ",1 )";
+
+                conexion.setearConsulta(consulta);
+
+                conexion.abrirConexion();
+                conexion.ejecutarAccion();
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (conexion != null)
+                    conexion.cerrarConexion();
+            }
+        }
     }
 }

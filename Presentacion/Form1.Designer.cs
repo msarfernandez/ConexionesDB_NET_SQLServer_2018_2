@@ -30,6 +30,7 @@
         {
             this.dgvPropiedades = new System.Windows.Forms.DataGridView();
             this.btnVerAmbientes = new System.Windows.Forms.Button();
+            this.btnAgregar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPropiedades)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,11 +59,23 @@
             this.btnVerAmbientes.UseVisualStyleBackColor = true;
             this.btnVerAmbientes.Click += new System.EventHandler(this.btnVerAmbientes_Click);
             // 
+            // btnAgregar
+            // 
+            this.btnAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAgregar.Location = new System.Drawing.Point(366, 244);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregar.TabIndex = 2;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(565, 281);
+            this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.btnVerAmbientes);
             this.Controls.Add(this.dgvPropiedades);
             this.MinimumSize = new System.Drawing.Size(581, 319);
@@ -78,6 +91,7 @@
 
         private System.Windows.Forms.DataGridView dgvPropiedades;
         private System.Windows.Forms.Button btnVerAmbientes;
+        private System.Windows.Forms.Button btnAgregar;
     }
 }
 

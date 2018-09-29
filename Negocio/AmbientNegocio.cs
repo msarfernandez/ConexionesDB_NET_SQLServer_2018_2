@@ -20,7 +20,7 @@ namespace Negocio
             //creo la conexion directamente con la cadena de conexion
             SqlConnection conexion = new SqlConnection("initial catalog=INMO_DB; data source=.; integrated security=sspi");
             //creo el comando directamente con el command text y la conexion. Todo pasado por constructor.
-            SqlCommand comando = new SqlCommand("select id, descripcion from ambientes", conexion);
+            SqlCommand comando = new SqlCommand("select id, descripcion, idPropiedad from ambientes", conexion);
             //lector para los datos leidos.
             SqlDataReader lector;
             try
@@ -39,7 +39,7 @@ namespace Negocio
                 {
                     //creo un ambiente al que directamente por constructor
                     //le estoy pasando los datos del lector, de la consulta SQL de arriba.
-                    Ambient aux = new Ambient(lector.GetInt32(0), 0, lector.GetString(1));
+                    Ambient aux = new Ambient(lector.GetInt32(0), lector.GetInt32(2), lector.GetString(1));
                     lista.Add(aux);
                 }
 
@@ -54,5 +54,6 @@ namespace Negocio
                 conexion.Close();
             }
         }
+
     }
 }
