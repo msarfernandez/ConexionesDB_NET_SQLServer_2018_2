@@ -31,7 +31,7 @@ namespace Negocio
             {
                 conexion.ConnectionString = "initial catalog= INMO_DB; data source=.; integrated security=sspi";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "Select P.IdPropiedad, P.DescripcionGeneral, P.IdDireccion, P.SuperficieCubierta, P.SuperFicieDescubierta, D.Calle, D.Numero  from PROPIEDADES P, DIRECCIONES D Where P.IdDireccion = D.id And Activo = 1";
+                comando.CommandText = "Select P.IdPropiedad, P.DescripcionGeneral, P.IdDireccion, P.SuperficieCubierta, P.SuperFicieDescubierta, D.Calle, D.Numero, D.Piso, D.IdLocalidad, L.CP, L.Descripcion as Loc  from PROPIEDADES P, DIRECCIONES D, LOCALIDADES L Where P.IdDireccion = D.id And Activo = 1 And D.IdLocalidad = L.IdLocalidad";
                 comando.Connection = conexion;
                 conexion.Open();
                 lector = comando.ExecuteReader();
@@ -49,7 +49,12 @@ namespace Negocio
                         aux.Direccion.Id = (int)lector["IdDireccion"];
                         aux.Direccion.Calle = (string)lector["Calle"];
                         aux.Direccion.Altura = (int)lector["Numero"];
-                        
+                        aux.Direccion.Piso = (int)lector["Piso"];
+                        aux.Direccion.Localidad = new Localidad();
+                        aux.Direccion.Localidad.IdLocalidad = (int)lector["IdLocalidad"];
+                        aux.Direccion.Localidad.CP = (string)lector["CP"];
+                        aux.Direccion.Localidad.Descripcion = (string)lector["Loc"];
+
                     }
                     aux.SuperficieCubierta = (int)lector["SuperficieCubierta"];
                     aux.SuperficieDescubierta = (int)lector["SuperficieDescubierta"];
@@ -131,7 +136,7 @@ namespace Negocio
             {
                 conexion = new AccesoDatos();
                 consulta = "insert into PROPIEDADES (DescripcionGeneral, SuperficieCubierta, SuperficieDescubierta, IdDireccion, Activo)";
-                consulta = consulta + " values ('" + nuevo.DescripcionGeneral + "'," + nuevo.SuperficieCubierta.ToString() + "," + nuevo.SuperficieDescubierta.ToString() + ",1, 1)";
+                consulta = consulta + " values ('" + nuevo.DescripcionGeneral + "'," + nuevo.SuperficieCubierta.ToString() + "," + nuevo.SuperficieDescubierta.ToString() + "," + nuevo.Direccion.Id.ToString() + ", 1)";
 
                 conexion.setearConsulta(consulta);
 

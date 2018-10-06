@@ -117,6 +117,34 @@ GO
 SET ANSI_PADDING OFF
 GO
 
+USE [INMO_DB]
+GO
+
+/****** Object:  Table [dbo].[LOCALIDADES]    Script Date: 10/06/2018 09:43:28 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[LOCALIDADES](
+	[IdLocalidad] [int] IDENTITY(1,1) NOT NULL,
+	[CP] [varchar](50) NULL,
+	[Descripcion] [varchar](100) NULL,
+ CONSTRAINT [PK_LOCALIDADES] PRIMARY KEY CLUSTERED 
+(
+	[IdLocalidad] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
 
 
 GO
@@ -164,4 +192,6 @@ INSERT INTO [INMO_DB].[dbo].[PROPIEDADES]
 GO
 
 
-
+insert into LOCALIDADES values (1665, 'jose c paz')
+insert into LOCALIDADES values (1663, 'san miguel')
+insert into LOCALIDADES values (1744, 'moreno')

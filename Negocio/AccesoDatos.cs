@@ -13,7 +13,8 @@ namespace Negocio
         private SqlConnection conexion;
         private SqlDataReader lector;
 
-        public SqlDataReader Lector {
+        public SqlDataReader Lector
+        {
             get { return lector; }
         }
         public SqlCommand Comando
@@ -72,6 +73,18 @@ namespace Negocio
             {
                 comando.Connection = conexion;
                 comando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public int ejecutarAccionReturn()
+        {
+            try
+            {
+                comando.Connection = conexion;
+                return (int)comando.ExecuteScalar();
             }
             catch (Exception ex)
             {

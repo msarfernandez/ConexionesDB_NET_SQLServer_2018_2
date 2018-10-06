@@ -37,6 +37,8 @@
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptarDos = new System.Windows.Forms.Button();
+            this.txtDireccion = new System.Windows.Forms.TextBox();
+            this.lblDireccion = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblDescripcion
@@ -70,26 +72,26 @@
             // 
             this.txtDescripcion.Location = new System.Drawing.Point(168, 30);
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(100, 20);
+            this.txtDescripcion.Size = new System.Drawing.Size(237, 20);
             this.txtDescripcion.TabIndex = 3;
             // 
             // txtSuperficieCubierta
             // 
             this.txtSuperficieCubierta.Location = new System.Drawing.Point(168, 65);
             this.txtSuperficieCubierta.Name = "txtSuperficieCubierta";
-            this.txtSuperficieCubierta.Size = new System.Drawing.Size(100, 20);
+            this.txtSuperficieCubierta.Size = new System.Drawing.Size(237, 20);
             this.txtSuperficieCubierta.TabIndex = 4;
             // 
             // txtSuperficieDescubierta
             // 
             this.txtSuperficieDescubierta.Location = new System.Drawing.Point(168, 100);
             this.txtSuperficieDescubierta.Name = "txtSuperficieDescubierta";
-            this.txtSuperficieDescubierta.Size = new System.Drawing.Size(100, 20);
+            this.txtSuperficieDescubierta.Size = new System.Drawing.Size(237, 20);
             this.txtSuperficieDescubierta.TabIndex = 5;
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(67, 158);
+            this.btnAceptar.Location = new System.Drawing.Point(112, 171);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(75, 23);
             this.btnAceptar.TabIndex = 6;
@@ -99,7 +101,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(181, 158);
+            this.btnCancelar.Location = new System.Drawing.Point(226, 171);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 7;
@@ -109,7 +111,7 @@
             // 
             // btnAceptarDos
             // 
-            this.btnAceptarDos.Location = new System.Drawing.Point(67, 187);
+            this.btnAceptarDos.Location = new System.Drawing.Point(112, 200);
             this.btnAceptarDos.Name = "btnAceptarDos";
             this.btnAceptarDos.Size = new System.Drawing.Size(75, 23);
             this.btnAceptarDos.TabIndex = 8;
@@ -117,11 +119,31 @@
             this.btnAceptarDos.UseVisualStyleBackColor = true;
             this.btnAceptarDos.Click += new System.EventHandler(this.btnAceptarDos_Click);
             // 
+            // txtDireccion
+            // 
+            this.txtDireccion.Location = new System.Drawing.Point(168, 132);
+            this.txtDireccion.Name = "txtDireccion";
+            this.txtDireccion.ReadOnly = true;
+            this.txtDireccion.Size = new System.Drawing.Size(237, 20);
+            this.txtDireccion.TabIndex = 10;
+            this.txtDireccion.Enter += new System.EventHandler(this.txtDireccion_Enter);
+            // 
+            // lblDireccion
+            // 
+            this.lblDireccion.AutoSize = true;
+            this.lblDireccion.Location = new System.Drawing.Point(100, 135);
+            this.lblDireccion.Name = "lblDireccion";
+            this.lblDireccion.Size = new System.Drawing.Size(55, 13);
+            this.lblDireccion.TabIndex = 9;
+            this.lblDireccion.Text = "Dirección:";
+            // 
             // frmAltaPropiedad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(320, 219);
+            this.ClientSize = new System.Drawing.Size(417, 259);
+            this.Controls.Add(this.txtDireccion);
+            this.Controls.Add(this.lblDireccion);
             this.Controls.Add(this.btnAceptarDos);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
@@ -150,5 +172,7 @@
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnAceptarDos;
+        private System.Windows.Forms.TextBox txtDireccion;
+        private System.Windows.Forms.Label lblDireccion;
     }
 }

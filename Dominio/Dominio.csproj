@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Ambient.cs" />
     <Compile Include="Direccion.cs" />
+    <Compile Include="Localidad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Propiedad.cs" />
   </ItemGroup>

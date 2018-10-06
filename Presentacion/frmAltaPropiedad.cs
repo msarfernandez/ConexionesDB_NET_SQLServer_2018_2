@@ -34,6 +34,7 @@ namespace Presentacion
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             PropiedadNegocio negocio = new PropiedadNegocio();
+            DireccionNegocio direccionNegocio = new DireccionNegocio();
             try
             {
                 if (propiedad == null)
@@ -55,6 +56,7 @@ namespace Presentacion
                 }
                 else
                 {
+                    propiedad.Direccion.Id = direccionNegocio.agregar(propiedad.Direccion);
                     negocio.alta(propiedad);
                     MessageBox.Show("Agregado Correctamente.");
                 }
@@ -103,6 +105,36 @@ namespace Presentacion
                     txtSuperficieDescubierta.Text = propiedad.SuperficieDescubierta.ToString();
                     Text = "Modificar";
                 }
+                else
+                {
+                    //06/10: agrego esto porque por el tema de la direccion necesito que si es ALTA
+                    //ya exista de una el objeto PROPIEDAD, no puedo esperar al boton aceptar.
+                    propiedad = new Propiedad();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void txtDireccion_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                //si aun no tengo una direccon la creo.
+                if (propiedad.Direccion == null)
+                    propiedad.Direccion = new Direccion();
+
+                //luego se la paso a la ventana de direccion, allá el objeto será
+                //cargado y...
+                frmDireccion ventanaDireccion = new frmDireccion(propiedad.Direccion);
+                ventanaDireccion.ShowDialog();
+                //cuando lleguemos acá, con la ventana de dirección cerrada
+                //ya voy a tener cargados en propiedad.Direccion esos datos.
+
+                txtDireccion.Text = propiedad.Direccion.ToString();
+
             }
             catch (Exception ex)
             {
