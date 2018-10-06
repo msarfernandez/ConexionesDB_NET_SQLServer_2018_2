@@ -16,6 +16,10 @@ namespace Negocio
         public SqlDataReader Lector {
             get { return lector; }
         }
+        public SqlCommand Comando
+        {
+            get { return comando; }
+        }
 
         public AccesoDatos()
         {

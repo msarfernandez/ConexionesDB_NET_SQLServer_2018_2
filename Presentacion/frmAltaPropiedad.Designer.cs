@@ -36,6 +36,7 @@
             this.txtSuperficieDescubierta = new System.Windows.Forms.TextBox();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnAceptarDos = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblDescripcion
@@ -106,11 +107,22 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // btnAceptarDos
+            // 
+            this.btnAceptarDos.Location = new System.Drawing.Point(67, 187);
+            this.btnAceptarDos.Name = "btnAceptarDos";
+            this.btnAceptarDos.Size = new System.Drawing.Size(75, 23);
+            this.btnAceptarDos.TabIndex = 8;
+            this.btnAceptarDos.Text = "Aceptar 2";
+            this.btnAceptarDos.UseVisualStyleBackColor = true;
+            this.btnAceptarDos.Click += new System.EventHandler(this.btnAceptarDos_Click);
+            // 
             // frmAltaPropiedad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(320, 219);
+            this.Controls.Add(this.btnAceptarDos);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.txtSuperficieDescubierta);
@@ -121,6 +133,7 @@
             this.Controls.Add(this.lblDescripcion);
             this.Name = "frmAltaPropiedad";
             this.Text = "frmAltaPropiedad";
+            this.Load += new System.EventHandler(this.frmAltaPropiedad_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -136,5 +149,6 @@
         private System.Windows.Forms.TextBox txtSuperficieDescubierta;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnAceptarDos;
     }
 }

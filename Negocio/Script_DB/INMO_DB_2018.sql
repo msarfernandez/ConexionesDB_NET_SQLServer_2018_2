@@ -17,6 +17,19 @@ GO
 SET ANSI_PADDING ON
 GO
 
+USE [INMO_DB]
+GO
+
+/****** Object:  Table [dbo].[PROPIEDADES]    Script Date: 10/05/2018 21:51:49 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
 CREATE TABLE [dbo].[PROPIEDADES](
 	[IdPropiedad] [int] IDENTITY(1,1) NOT NULL,
 	[DescripcionGeneral] [varchar](250) NULL,
@@ -25,6 +38,7 @@ CREATE TABLE [dbo].[PROPIEDADES](
 	[Ambientes] [int] NULL,
 	[IdDireccion] [int] NULL,
 	[FechaAlta] [smalldatetime] NULL,
+	[Activo] [bit] NULL,
  CONSTRAINT [PK_PROPIEDADES] PRIMARY KEY CLUSTERED 
 (
 	[IdPropiedad] ASC
@@ -32,6 +46,11 @@ CREATE TABLE [dbo].[PROPIEDADES](
 ) ON [PRIMARY]
 
 GO
+
+SET ANSI_PADDING OFF
+GO
+
+
 
 USE [INMO_DB]
 GO

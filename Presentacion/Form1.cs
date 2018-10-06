@@ -69,5 +69,51 @@ namespace Presentacion
                 MessageBox.Show(ex.ToString());
             }
         }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            Propiedad modi;
+            try
+            {
+                modi = (Propiedad)dgvPropiedades.CurrentRow.DataBoundItem;
+                frmAltaPropiedad modificar = new frmAltaPropiedad(modi);
+                modificar.ShowDialog();
+                cargar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void btnEliminarFisico_Click(object sender, EventArgs e)
+        {
+            Propiedad eliminar;
+            PropiedadNegocio negocio = new PropiedadNegocio();
+            try
+            {
+                eliminar = (Propiedad)dgvPropiedades.CurrentRow.DataBoundItem;
+                negocio.eliminarFisico(eliminar.Id);
+                cargar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void btnEliminarLogico_Click(object sender, EventArgs e)
+        {
+            PropiedadNegocio negocio = new PropiedadNegocio();
+            try
+            {
+                negocio.eliminarLogico((int)dgvPropiedades.CurrentRow.Cells[0].Value);
+                cargar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
     }
 }

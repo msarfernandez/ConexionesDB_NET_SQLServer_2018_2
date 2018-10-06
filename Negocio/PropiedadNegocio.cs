@@ -31,7 +31,7 @@ namespace Negocio
             {
                 conexion.ConnectionString = "initial catalog= INMO_DB; data source=.; integrated security=sspi";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "Select P.IdPropiedad, P.DescripcionGeneral, P.IdDireccion, P.SuperficieCubierta, P.SuperFicieDescubierta, D.Calle, D.Numero  from PROPIEDADES P, DIRECCIONES D Where P.IdDireccion = D.id";
+                comando.CommandText = "Select P.IdPropiedad, P.DescripcionGeneral, P.IdDireccion, P.SuperficieCubierta, P.SuperFicieDescubierta, D.Calle, D.Numero  from PROPIEDADES P, DIRECCIONES D Where P.IdDireccion = D.id And Activo = 1";
                 comando.Connection = conexion;
                 conexion.Open();
                 lector = comando.ExecuteReader();
@@ -75,22 +75,42 @@ namespace Negocio
 
         }
 
-        public void alta(Propiedad nuevo)
+        public void modificar(Propiedad propiedad)
         {
-            AccesoDatos conexion = null;
-            string consulta = "";
+            AccesoDatos conexion;
             try
             {
                 conexion = new AccesoDatos();
-                consulta = "insert into PROPIEDADES (DescripcionGeneral, SuperficieCubierta, SuperficieDescubierta, IdDireccion)";
-                consulta = consulta + "  values ('" + nuevo.DescripcionGeneral + "'," + nuevo.SuperficieCubierta.ToString() + "," + nuevo.SuperficieDescubierta.ToString() + ",1 )";
-
-                conexion.setearConsulta(consulta);
+                conexion.setearConsulta("update PROPIEDADES set DescripcionGeneral = @descripcion, SuperficieCubierta = @supCubierta, SuperficieDescubierta = @supDescubierta Where IdPropiedad = @id");
+                conexion.Comando.Parameters.Clear();
+                conexion.Comando.Parameters.AddWithValue("@descripcion", propiedad.DescripcionGeneral);
+                conexion.Comando.Parameters.AddWithValue("@supCubierta", propiedad.SuperficieCubierta);
+                conexion.Comando.Parameters.AddWithValue("@supDescubierta", propiedad.SuperficieDescubierta);
+                conexion.Comando.Parameters.AddWithValue("@id", propiedad.Id);
 
                 conexion.abrirConexion();
                 conexion.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
+        public void altaDos(Propiedad nuevo)
+        {
+            AccesoDatos conexion = null;
+            try
+            {
+                conexion = new AccesoDatos();
+                conexion.setearConsulta("insert into PROPIEDADES (DescripcionGeneral, SuperficieCubierta, SuperficieDescubierta, IdDireccion, Activo) values (@descripcion, @supCubierta, @supDescubierta, 1, 1)");
+                conexion.Comando.Parameters.Clear();
+                conexion.Comando.Parameters.AddWithValue("@descripcion", nuevo.DescripcionGeneral);
+                conexion.Comando.Parameters.AddWithValue("@supCubierta", nuevo.SuperficieCubierta);
+                conexion.Comando.Parameters.AddWithValue("@supDescubierta", nuevo.SuperficieDescubierta);
 
+                conexion.abrirConexion();
+                conexion.ejecutarAccion();
             }
             catch (Exception ex)
             {
@@ -100,6 +120,68 @@ namespace Negocio
             {
                 if (conexion != null)
                     conexion.cerrarConexion();
+            }
+        }
+
+        public void alta(Propiedad nuevo)
+        {
+            AccesoDatos conexion = null;
+            string consulta = "";
+            try
+            {
+                conexion = new AccesoDatos();
+                consulta = "insert into PROPIEDADES (DescripcionGeneral, SuperficieCubierta, SuperficieDescubierta, IdDireccion, Activo)";
+                consulta = consulta + " values ('" + nuevo.DescripcionGeneral + "'," + nuevo.SuperficieCubierta.ToString() + "," + nuevo.SuperficieDescubierta.ToString() + ",1, 1)";
+
+                conexion.setearConsulta(consulta);
+
+                conexion.abrirConexion();
+                conexion.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (conexion != null)
+                    conexion.cerrarConexion();
+            }
+        }
+
+        public void eliminarFisico(int id)
+        {
+            AccesoDatos conexion;
+            try
+            {
+                conexion = new AccesoDatos();
+                conexion.setearConsulta("Delete From PROPIEDADES Where IdPropiedad=@id");
+                conexion.Comando.Parameters.Clear();
+                conexion.Comando.Parameters.AddWithValue("@id", id);
+                conexion.abrirConexion();
+                conexion.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public void eliminarLogico(int id)
+        {
+            AccesoDatos conexion;
+            try
+            {
+                conexion = new AccesoDatos();
+                conexion.setearConsulta("Update Propiedades Set Activo = 0 Where IdPropiedad=@id");
+                conexion.Comando.Parameters.Clear();
+                conexion.Comando.Parameters.AddWithValue("@id", id);
+                conexion.abrirConexion();
+                conexion.ejecutarAccion();
+            }
+            catch (Exception ex)
+            { 
+            
+                throw ex;
             }
         }
     }
