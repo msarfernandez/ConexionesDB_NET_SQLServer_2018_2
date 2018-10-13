@@ -15,10 +15,12 @@ namespace Presentacion
     public partial class frmDireccion : Form
     {
         private Direccion direccion;
+
         public frmDireccion()
         {
             InitializeComponent();
         }
+
         public frmDireccion(Direccion direccion)
         {
             InitializeComponent();
@@ -52,11 +54,23 @@ namespace Presentacion
             try
             {
                 cboLocalidad.DataSource = negocioLocalidad.listar();
+                cboLocalidad.DisplayMember = "DescripcionGeneral";
+                cboLocalidad.ValueMember = "IdLocalidad";
+
+                if(direccion.Id != 0)
+                {
+                    txtCalle.Text = direccion.Calle;
+                    txtNumero.Text = direccion.Altura.ToString();
+                    txtPiso.Text = direccion.Piso.ToString();
+                    cboLocalidad.SelectedValue = direccion.Localidad.IdLocalidad;
+                }
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
         }
+
     }
 }

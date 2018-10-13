@@ -83,6 +83,7 @@ namespace Negocio
         public void modificar(Propiedad propiedad)
         {
             AccesoDatos conexion;
+            DireccionNegocio direccionNegocio = new DireccionNegocio();
             try
             {
                 conexion = new AccesoDatos();
@@ -95,6 +96,10 @@ namespace Negocio
 
                 conexion.abrirConexion();
                 conexion.ejecutarAccion();
+
+                direccionNegocio.modificar(propiedad.Direccion);
+
+
             }
             catch (Exception ex)
             {

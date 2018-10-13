@@ -20,6 +20,7 @@ namespace Presentacion
         {
             InitializeComponent();
         }
+
         public frmAltaPropiedad(Propiedad modi)
         {
             InitializeComponent();
@@ -33,7 +34,7 @@ namespace Presentacion
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            PropiedadNegocio negocio = new PropiedadNegocio();
+            PropiedadNegocio propiedadNegocio = new PropiedadNegocio();
             DireccionNegocio direccionNegocio = new DireccionNegocio();
             try
             {
@@ -51,13 +52,13 @@ namespace Presentacion
 
                 if (propiedad.Id != 0)
                 {
-                    negocio.modificar(propiedad);
+                    propiedadNegocio.modificar(propiedad);
                     MessageBox.Show("Modificado Correctamente.");
                 }
                 else
                 {
                     propiedad.Direccion.Id = direccionNegocio.agregar(propiedad.Direccion);
-                    negocio.alta(propiedad);
+                    propiedadNegocio.alta(propiedad);
                     MessageBox.Show("Agregado Correctamente.");
                 }
                 Close();
@@ -103,6 +104,7 @@ namespace Presentacion
                     txtDescripcion.Text = propiedad.DescripcionGeneral;
                     txtSuperficieCubierta.Text = propiedad.SuperficieCubierta.ToString();
                     txtSuperficieDescubierta.Text = propiedad.SuperficieDescubierta.ToString();
+                    txtDireccion.Text = propiedad.Direccion.ToString();
                     Text = "Modificar";
                 }
                 else

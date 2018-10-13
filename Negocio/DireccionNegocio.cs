@@ -31,5 +31,28 @@ namespace Negocio
                 throw ex;
             }
         }
+
+        public void modificar(Direccion direccion)
+        {
+            AccesoDatos conexion;
+            try
+            {
+                conexion = new AccesoDatos();
+                conexion.setearSP("modificarDireccion");
+                conexion.Comando.Parameters.Clear();
+                conexion.Comando.Parameters.AddWithValue("@calle", direccion.Calle);
+                conexion.Comando.Parameters.AddWithValue("@altura", direccion.Altura);
+                conexion.Comando.Parameters.AddWithValue("@piso", direccion.Piso);
+                conexion.Comando.Parameters.AddWithValue("@id", direccion.Id);
+
+                conexion.abrirConexion();
+                conexion.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

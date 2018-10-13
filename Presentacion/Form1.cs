@@ -14,6 +14,8 @@ namespace Presentacion
 {
     public partial class Form1 : Form
     {
+        private List<Propiedad> listaPropiedades;
+
         public Form1()
         {
             InitializeComponent();
@@ -29,7 +31,8 @@ namespace Presentacion
             PropiedadNegocio neg = new PropiedadNegocio();
             try
             {
-                dgvPropiedades.DataSource = neg.listar();
+                listaPropiedades = (List<Propiedad>)neg.listar();
+                dgvPropiedades.DataSource = listaPropiedades;
                 dgvPropiedades.Columns[0].Visible = false;
                 dgvPropiedades.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 dgvPropiedades.Columns["FechaAlta"].Visible = false;
@@ -113,6 +116,39 @@ namespace Presentacion
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            if(txtBuscar.Text == "")
+            {
+                dgvPropiedades.DataSource = listaPropiedades;
+            }
+            else
+            {
+            List<Propiedad> lista;
+            lista = listaPropiedades.FindAll(PEPE => PEPE.DescripcionGeneral.Contains(txtBuscar.Text));
+                dgvPropiedades.DataSource = lista;
+            }
+            
+        }
+
+        private void txtBuscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+        }
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            if (txtBuscar.Text == "")
+            {
+                dgvPropiedades.DataSource = listaPropiedades;
+            }
+            else
+            {
+                List<Propiedad> lista;
+                lista = listaPropiedades.FindAll(PEPE => PEPE.DescripcionGeneral.Contains(txtBuscar.Text));
+                dgvPropiedades.DataSource = lista;
             }
         }
     }
