@@ -1,0 +1,18 @@
+﻿create procedure listarDirecciones
+as
+select id, calle, numero, piso from DIRECCIONES
+
+go
+
+
+create procedure modificarDireccion
+@calle varchar(50),
+@altura int,
+@piso int,
+@id int
+as
+update DIRECCIONES set
+Calle = @calle, Numero = @altura,
+Piso = @piso Where Id = @id
+
+go

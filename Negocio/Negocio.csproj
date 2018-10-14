@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Script_DB\INMO_DB_2018.sql" />
+    <Content Include="Script_DB\Stored Procedures.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
