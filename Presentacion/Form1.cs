@@ -23,7 +23,26 @@ namespace Presentacion
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            cargar();
+            try
+            {
+                cargar();
+                frmPrincipal p = (frmPrincipal)MdiParent;
+                if(p.UsuarioLogueado.Tipo.Id == TipoUsuario.ADMINISTRADOR)
+                {
+                    btnVerAmbientes.Enabled = false;
+                    
+                }
+                else
+                {
+                    btnVerAmbientes.Enabled = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            
         }
 
         private void cargar()

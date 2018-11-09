@@ -7,11 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Dominio;
 
 namespace Presentacion
 {
     public partial class frmPrincipal : Form
     {
+        private Usuario usuarioLogueado;
+
+        public Usuario UsuarioLogueado
+        {
+            get { return usuarioLogueado; }
+        }
+
         public frmPrincipal()
         {
             InitializeComponent();
@@ -37,6 +45,26 @@ namespace Presentacion
             //if (propiedades.GetType() == typeof(Form1))
             //    MessageBox.Show("ya tenes una abierta");
 
+        }
+
+        private void frmPrincipal_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                usuarioLogueado = new Usuario();
+                frmLogin login = new frmLogin(usuarioLogueado);
+                login.ShowDialog();
+
+                if(usuarioLogueado.Tipo.Id == TipoUsuario.ADMINISTRADOR)
+                {
+                    mnuPropiedades.Enabled = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }

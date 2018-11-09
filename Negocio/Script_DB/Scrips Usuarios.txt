@@ -1,0 +1,116 @@
+﻿USE [INMO_DB]
+GO
+
+/****** Object:  Table [dbo].[USUARIOS]    Script Date: 11/09/2018 20:05:31 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[USUARIOS](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Usuario] [varchar](50) NULL,
+	[Pass] [varchar](50) NULL,
+	[IdTipoUsuario] [int] NULL,
+ CONSTRAINT [PK_USUARIOS] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+USE [INMO_DB]
+GO
+
+/****** Object:  Table [dbo].[PERMISOS]    Script Date: 11/09/2018 20:05:44 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[PERMISOS](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Permiso] [varchar](50) NULL,
+ CONSTRAINT [PK_PERMISOS] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+USE [INMO_DB]
+GO
+
+/****** Object:  Table [dbo].[PERMISOS_USUARIOS]    Script Date: 11/09/2018 20:05:55 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[PERMISOS_USUARIOS](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[IdUsuario] [int] NULL,
+	[IdPermiso] [int] NULL,
+ CONSTRAINT [PK_PERMISOS_USUARIOS] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+USE [INMO_DB]
+GO
+
+/****** Object:  Table [dbo].[TIPOUSUARIO]    Script Date: 11/09/2018 20:06:05 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[TIPOUSUARIO](
+	[Id] [int] NULL,
+	[Descripcion] [varchar](50) NULL
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+insert into USUARIOS values ('admin', 'admin', 1)
+
+
+insert into tipousuario values (1, 'ADMINISTRADOR')
+insert into tipousuario values (2, 'GERENTE')
+insert into tipousuario values (3, 'ATENCION PUBLICO')
+
+insert into permisos values ('lista inmuebles')
+insert into permisos values ('agregar inmueble')
+insert into permisos values ('modificar inmueble')
+insert into permisos values ('ver ambientes')
+
+
+insert into permisos_usuarios values (1, 1)
+insert into permisos_usuarios values (1, 2)

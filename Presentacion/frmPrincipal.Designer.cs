@@ -35,8 +35,8 @@
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAcercaDe = new System.Windows.Forms.ToolStripMenuItem();
             this.tsBarraHerramientas = new System.Windows.Forms.ToolStrip();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tsbPropiedades = new System.Windows.Forms.ToolStripButton();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblFecha = new System.Windows.Forms.ToolStripStatusLabel();
             this.msMenuPrincipal.SuspendLayout();
             this.tsBarraHerramientas.SuspendLayout();
@@ -65,7 +65,7 @@
             // mnuPropiedades
             // 
             this.mnuPropiedades.Name = "mnuPropiedades";
-            this.mnuPropiedades.Size = new System.Drawing.Size(152, 22);
+            this.mnuPropiedades.Size = new System.Drawing.Size(139, 22);
             this.mnuPropiedades.Text = "Propiedades";
             // 
             // ayudaToolStripMenuItem
@@ -93,16 +93,6 @@
             this.tsBarraHerramientas.TabIndex = 2;
             this.tsBarraHerramientas.Text = "toolStrip1";
             // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lblFecha});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 203);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(445, 22);
-            this.statusStrip1.TabIndex = 3;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
             // tsbPropiedades
             // 
             this.tsbPropiedades.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -112,6 +102,16 @@
             this.tsbPropiedades.Size = new System.Drawing.Size(23, 22);
             this.tsbPropiedades.Text = "toolStripButton1";
             this.tsbPropiedades.Click += new System.EventHandler(this.tsbPropiedades_Click);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblFecha});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 203);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(445, 22);
+            this.statusStrip1.TabIndex = 3;
+            this.statusStrip1.Text = "statusStrip1";
             // 
             // lblFecha
             // 
@@ -132,6 +132,7 @@
             this.Name = "frmPrincipal";
             this.Text = "Principal";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmPrincipal_Load);
             this.msMenuPrincipal.ResumeLayout(false);
             this.msMenuPrincipal.PerformLayout();
             this.tsBarraHerramientas.ResumeLayout(false);
