@@ -1,0 +1,2 @@
+﻿insert into direcciones values ('calle', 123, 1, 1)
+update PROPIEDADES set Activo = 1, IdDireccion = 1
